@@ -135,7 +135,7 @@ function multipicationTable($vertical, $horizontal) {
     for ($i = 1 ; $i <= $vertical ; $i++) {
         echo '<tr>';
         for ($j = 1 ; $j <= $horizontal ; $j++) {
-            $result = $i*$j;
+            $result = $i * $j; // здесь надо бы разделить чтоб читалось лучше
             echo "<td align='center'> $result</td>";
         }
         echo '</tr>';
@@ -164,8 +164,13 @@ function isPalindrom($str){
 }
 
 //var_dump(isPalindrom('PHp'));
-
-$func = isPalindrom('PH p');  //присвоим результат функции переменной
+// функция должна работать с кириицей
+// отрабатывать что полиндром на эти предложения
+// Удавы рвали лавры в аду
+//Кит на море романтик
+//Лёша на полке клопа нашёл
+//И любит Сева вестибюли
+$func = isPalindrom('PHp');  //присвоим результат функции переменной
 
 function descResult($fun){
     if ($fun == true){
@@ -274,7 +279,7 @@ echo '-------------------------------------------------------------------<br><br
 
 
 function showFileContent($filename) {
-    $descriptor = fopen($filename, 'r');
+    $descriptor       = fopen($filename, 'r');
     echo $fileContent = fgets($descriptor);
 }
 
