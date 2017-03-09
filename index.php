@@ -10,13 +10,14 @@ $example1 = array('каждый охотник', 'желает знать', 'г�
 //print_r($example1);
 //echo '<br><br>';
 
-function stringHandler($arrayStr, $bool = false) {
-    if($bool === true) {
+function stringHandler($arrayStr, $bool = false)
+{
+    if ($bool === true) {
         echo '<h3>Переменная $bool -> TRUE</h3>';
         return implode("_", $arrayStr);
     } else {
         echo '<h3>Переменная $bool -> FALSE</h3>';
-        for ($i = 0 ; $i <= count($arrayStr)-1 ; $i++) {
+        for ($i = 0; $i <= count($arrayStr) - 1; $i++) {
             echo "<p> $arrayStr[$i] </p>";
         }
     }
@@ -37,12 +38,13 @@ $example2 = array(4, 2, 3);
 //print_r($example2);
 //echo '<br><br>';
 
-function arithmetic($arrayInt, $operator) {
-    if (!is_array($arrayInt)){
+function arithmetic($arrayInt, $operator)
+{
+    if (!is_array($arrayInt)) {
         return '<p>Задайте массив чисел первым параметром функции</p>';
     } else {
         $res = $arrayInt[0];   // будем использовать $res при осуществлении указанной арифм. операции
-        for ($i = 1 ; $i <= count($arrayInt)-1; $i++){
+        for ($i = 1; $i <= count($arrayInt) - 1; $i++) {
             if (!is_int($arrayInt[$i])) {
                 return '<p>Элемент массива должен быть числом</p>';
             } else {
@@ -60,7 +62,7 @@ function arithmetic($arrayInt, $operator) {
                 }
             }
         }
-        return 'Результат: '.$res;
+        return 'Результат: ' . $res;
     }
 }
 
@@ -72,10 +74,11 @@ echo '<br><br>';
 echo 'Задание №3';
 echo '-------------------------------------------------------------------<br><br>';
 
-function calcEverything() {
+function calcEverything()
+{
     $argArray = func_get_args();
 
-    for ($j = 1 ; $j <= count($argArray)-1 ; $j++) {
+    for ($j = 1; $j <= count($argArray) - 1; $j++) {
         if (!is_int($argArray[$j]) && !is_float($argArray[$j])) {
             die('Ошибка: параметры функции, начиная со второго, должны быть числами');
         }
@@ -84,7 +87,7 @@ function calcEverything() {
     if ($argArray[0] === '+') {
         $sum = $argArray[1];
         echo "$argArray[1]";
-        for ($i = 2 ; $i <= count($argArray)-1 ; $i++) {
+        for ($i = 2; $i <= count($argArray) - 1; $i++) {
             $sum = $sum + $argArray[$i];
             echo " + $argArray[$i]";
         }
@@ -92,7 +95,7 @@ function calcEverything() {
     } elseif ($argArray[0] === '-') {
         $sum = $argArray[1];
         echo "$argArray[1]";
-        for ($i = 2 ; $i <= count($argArray)-1 ; $i++) {
+        for ($i = 2; $i <= count($argArray) - 1; $i++) {
             $sum = $sum - $argArray[$i];
             echo " - $argArray[$i]";
         }
@@ -127,15 +130,16 @@ echo 'Задание №4';
 echo '-------------------------------------------------------------------<br><br>';
 
 
-function multipicationTable($vertical, $horizontal) {
+function multipicationTable($vertical, $horizontal)
+{
     if (!is_int($vertical) && !is_int($horizontal)) {
         die('Ошибка: параметры должны быть целыми числами');
     }
     echo '<table border="1">';
-    for ($i = 1 ; $i <= $vertical ; $i++) {
+    for ($i = 1; $i <= $vertical; $i++) {
         echo '<tr>';
-        for ($j = 1 ; $j <= $horizontal ; $j++) {
-            $result = $i*$j;
+        for ($j = 1; $j <= $horizontal; $j++) {
+            $result = $i * $j;
             echo "<td align='center'> $result</td>";
         }
         echo '</tr>';
@@ -153,22 +157,32 @@ echo 'Задание №5';
 echo '-------------------------------------------------------------------<br><br>';
 
 
-function isPalindrom($str){
-    $trimStr = trim($str);
-    $revTrimStr = strrev($trimStr);
-    if (strnatcasecmp($trimStr, $revTrimStr) === 0) {
+function isPalindrom($str)
+{
+    $trimStr = str_replace(' ', '', $str);
+    echo "$trimStr<br>";
+    echo $revTrimStr = utf8_strrev($trimStr) . '<br>';
+
+
+    if (strcasecmp($trimStr, $revTrimStr)) {
         return true;
     } else {
         return false;
     }
 }
 
-//var_dump(isPalindrom('PHp'));
+function utf8_strrev($str)
+{
+    preg_match_all('/./u', $str, $ar);
+    return join('', array_reverse($ar[0]));
+}
 
-$func = isPalindrom('PH p');  //присвоим результат функции переменной
 
-function descResult($fun){
-    if ($fun == true){
+$func = isPalindrom('Кит на море романтик');  //присвоим результат функции переменной
+
+function descResult($fun)
+{
+    if ($fun == true) {
         echo 'Строка является палиндромом (при условии, что не учитывается регистр и пробелы)';
     } else {
         echo 'Строка не является палиндромом';
@@ -184,10 +198,10 @@ echo 'Задание №6';
 echo '-------------------------------------------------------------------<br><br>';
 
 date_default_timezone_set('Europe/Moscow');
-echo 'Текущее время - '.date('Y-m-d H:i:s').'<br><br>';
+echo 'Текущее время - ' . date('Y-m-d H:i:s') . '<br><br>';
 
 echo 'unixtime время, соответствующее 24.02.2016 00:00:00,   -  >'
-     .$t = strtotime('24.02.2016 00:00:00').'<br>';
+    . $t = strtotime('24.02.2016 00:00:00') . '<br>';
 //echo date('Y-m-d H:i:s', $t);   для проверки
 
 
@@ -224,7 +238,8 @@ echo '-------------------------------------------------------------------<br><br
 
 $rx = 'RX packets:95011 errors:0 dropped:0 :) overruns:0 frame:0.';
 
-function RXpackets($rxString){
+function RXpackets($rxString)
+{
     if (preg_match('/packets:[0-9]+/', $rxString, $matches)) {
         preg_match('/[0-9]+/', $matches[0], $packets);
         settype($packets[0], 'int');
@@ -244,8 +259,9 @@ function RXpackets($rxString){
     //print_r($matches);   //для проверки
 }
 
-function smileASCII () {
-    echo   '<pre>
+function smileASCII()
+{
+    echo '<pre>
              OOOOOOOOOOO
          OOOOOOOOOOOOOOOOOOO
       OOOOOO  OOOOOOOOO  OOOOOO
@@ -273,8 +289,9 @@ echo 'Задание №9';
 echo '-------------------------------------------------------------------<br><br>';
 
 
-function showFileContent($filename) {
-    $descriptor = fopen($filename, 'r');
+function showFileContent($filename)
+{
+    $descriptor       = fopen($filename, 'r');
     echo $fileContent = fgets($descriptor);
 }
 
@@ -289,4 +306,4 @@ echo '-------------------------------------------------------------------<br><br
 
 
 $descriptor = fopen('anothertest.txt', 'w');
-echo fwrite($descriptor, 'Hello again!'). ' байтов информации записано в файл anothertest.txt';
+echo fwrite($descriptor, 'Hello again!') . ' байтов информации записано в файл anothertest.txt';
